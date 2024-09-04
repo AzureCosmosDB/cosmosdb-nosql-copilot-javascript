@@ -13,6 +13,7 @@ interface IUserProfile {
 
 export default function Navbar() {
     const { accounts, instance } = useMsal();
+    console.log(accounts)
 
     const userData: IUserProfile = {
         authorityType: accounts[0]?.authorityType ?? '',
