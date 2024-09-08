@@ -4,6 +4,10 @@ import App from './App.tsx'
 import './index.css'
 import { Toaster } from '../src/components/ui/sonner.tsx'
 import { ThemeProvider } from "./components/ThemeProviderContext.tsx"
+import TimeAgo from 'javascript-time-ago'
+import en from 'javascript-time-ago/locale/en'
+
+TimeAgo.addDefaultLocale(en)
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
