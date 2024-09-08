@@ -1,7 +1,8 @@
-import { ArrowRight, Cloud, MessageSquareMore, Pencil, PlusCircle, Trash2 } from 'lucide-react';
+import { MessageSquareMore, Pencil, PlusCircle, Trash2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"; // UI components for cards
 import { Button } from './ui/button'; // Custom Button component
-import cosmosdbicon from '../assets/cosmosdb.svg'; // Importing the cosmosdb icon for display in the sidebar header
+import cosmosDbIcon from '../assets/cosmosdb.svg'; // Importing the cosmosdb icon for display in the sidebar header
+import CognitiveIcon from '../assets/Azure_cognitive_services.svg'; // Importing the Azure Cognitive Services icon for display in the sidebar header
 
 export default function ChatSidebar() {
   return (
@@ -10,13 +11,9 @@ export default function ChatSidebar() {
       <div className="flex items-center justify-between p-4 bg-blue-500 dark:bg-gray-900 text-white">
         <div className="flex items-center space-x-2">
           {/* Cosmos DB Icon and Cloud Icon */}
-          <img src={cosmosdbicon} alt="logo" className="w-6 h-6" /> {/* Cosmos DB Logo */}
-          <Cloud className="w-6 h-6" /> {/* Cloud Icon */}
+          <img src={cosmosDbIcon} alt="logo" className="w-6 h-6" /> {/* Cosmos DB Logo */}
+          <img src={CognitiveIcon} alt="logo" className="w-6 h-6" /> {/* Azure Cognitive Services Logo */}
         </div>
-        {/* Button to collapse the sidebar */}
-        <Button size="icon" variant="default" className="bg-white dark:bg-gray-700 text-black dark:text-white hover:bg-blue-600 dark:hover:bg-gray-600">
-          <ArrowRight className="w-4 h-4" />
-        </Button>
       </div>
 
       {/* Create New Chat Button */}
