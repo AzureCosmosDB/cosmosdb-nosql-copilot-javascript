@@ -1,5 +1,4 @@
 import { useRouteError } from "react-router-dom";
-import Icon from "../components/Icon";
 import { ShieldX } from 'lucide-react'
 
 export default function ErrorPage() {
