@@ -1,9 +1,25 @@
 import { Button } from "./components/ui/button";
 
+import SignInPage from "./pages/SignInPage.tsx";
+import ErrorPage from "./pages/ErrorPage";
+import HomePage from "./pages/HomePage";
+
 export default function App() {
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <SignInPage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/home",
+      element: <HomePage /> ,
+      errorElement: <ErrorPage />,
+    },
+  ]);
+
   return (
-    <h1 className="text-3xl font-bold underline">
-      <Button>Click me</Button>
-    </h1>
+    <RouterProvider router={router} />
   )
 }
