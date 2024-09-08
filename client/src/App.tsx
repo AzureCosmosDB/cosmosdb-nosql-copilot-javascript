@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage";
 
 import { pca } from '../src/config/authConfig.ts'
 import { MsalProvider } from "@azure/msal-react";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 export default function App() {
 
