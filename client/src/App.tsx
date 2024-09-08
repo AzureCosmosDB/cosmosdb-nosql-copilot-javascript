@@ -4,6 +4,9 @@ import SignInPage from "./pages/SignInPage.tsx";
 import ErrorPage from "./pages/ErrorPage";
 import HomePage from "./pages/HomePage";
 
+import { pca } from '../src/config/authConfig.ts'
+import { MsalProvider } from "@azure/msal-react";
+
 export default function App() {
 
   const router = createBrowserRouter([
@@ -20,6 +23,8 @@ export default function App() {
   ]);
 
   return (
-    <RouterProvider router={router} />
+    <MsalProvider instance={pca}>
+      <RouterProvider router={router} />
+    </MsalProvider>
   )
 }
