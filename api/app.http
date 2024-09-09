@@ -1,0 +1,4 @@
+###
+# Get all Todos
+GET http://localhost:8000/api/todos
+Accept: application/json
