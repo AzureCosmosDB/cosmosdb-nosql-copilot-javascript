@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Input } from "./ui/input"; // Input component
 import { Button } from "./ui/button"; // Button component
 import { Send } from "lucide-react"; // Icon for the send button
 
