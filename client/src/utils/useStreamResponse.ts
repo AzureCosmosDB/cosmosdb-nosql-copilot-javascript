@@ -9,7 +9,7 @@ const useStreamResponse = (setMessages: React.Dispatch<React.SetStateAction<Mess
     setMessages((prevMessages) => [...prevMessages, newMessage]);
 
     try {
-      const response = await fetch('http://localhost:8000/api', {
+      const response = await fetch('http://localhost:8000/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -2,3 +2,11 @@
 # Test middle route
 GET http://localhost:8000/
 Accept: application/json
+
+###
+POST http://localhost:8000/api/chat
+content-type: application/json
+
+{
+    "question": "What is python"
+}
