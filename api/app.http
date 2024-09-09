@@ -1,4 +1,4 @@
 ###
-# Get all Todos
-GET http://localhost:8000/api/todos
+# Test middle route
+GET http://localhost:8000/
 Accept: application/json

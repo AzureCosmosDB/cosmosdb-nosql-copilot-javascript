@@ -13,7 +13,6 @@ if (!endpoint || !azureApiKey || !deployment || !port) {
     throw new Error('Missing or invalid Azure OpenAI endpoint, API key, deployment name, or port.');
 }
 
-
 const config = {
     port,
     deployment,
