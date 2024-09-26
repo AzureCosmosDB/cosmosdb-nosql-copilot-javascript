@@ -72,8 +72,7 @@ export const handleQuery = async (req: Request, res: Response) => {
       }
 
       stream.push(null);
-
-      res.write('event: end\ndata: \n\n'); // Indicate the end of the stream
+      
       res.end();
       logger.info('Finished streaming response.');
 

@@ -1,20 +1,22 @@
 import { Message } from "../components/Chat";
 import calculateTokens from './calculateTokens'; // Import the token calculation utility
 
-const useStreamResponse = (setMessages: React.Dispatch<React.SetStateAction<Message[]>>) => {
-  return async (question: string) => {
-    // Automatically calculate the tokens for the user message
-    const userTokens = calculateTokens(question);
-    const newMessage: Message = { role: 'user', content: question, tokens: userTokens, time: new Date() };
-    setMessages((prevMessages) => [...prevMessages, newMessage]);
+const SERVER_URL: string = import.meta.env.VITE_SERVER_URL
 
+const useStreamResponse = (setMessages: React.Dispatch<React.SetStateAction<Message[]>>) => {
+  return async (query: string) => {
+    // Automatically calculate the tokens for the user message
+    const userTokens = calculateTokens(query);
+    const newMessage: Message = { role: 'user', content: query, tokens: userTokens, time: new Date() };
+    setMessages((prevMessages) => [...prevMessages, newMessage]);
+  
     try {
-      const response = await fetch('http://localhost:8000/api/chat', {
+      const response = await fetch(SERVER_URL + '/query', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ question }),
+        body: JSON.stringify({ query }),
       });
 
       // Placeholder for the assistant message, with initial empty content
