@@ -1,7 +1,8 @@
-import config from './config/server.config';
+import config from './config';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import chatRouter from './routes/chat.router';
+import queryRoutes from './routes/queryRoutes';
 import logger from './utils/logger';
 import limiter from './middleware/rate-limiter'
 
@@ -21,6 +22,7 @@ app.get('/', (req: Request, res: Response) => {
 
 // Routes
 app.use('/api/chat', chatRouter);
+app.use('/api/query', queryRoutes); //api/query
 
 
 // Start server
