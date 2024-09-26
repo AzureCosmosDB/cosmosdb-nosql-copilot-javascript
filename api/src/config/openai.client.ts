@@ -1,10 +1,9 @@
+// server/src/config/openai.client.ts
 import { OpenAIClient, AzureKeyCredential } from "@azure/openai";
-import { endpoint, azureApiKey, deployment } from './server.config'
+import config from './index'; 
+
 // Initialize OpenAIClient outside the function to reuse the client instance
+const credential = new AzureKeyCredential(config.azureOpenAI.apiKey);
+const client = new OpenAIClient(config.azureOpenAI.endpoint, credential);
 
-const credential = new AzureKeyCredential(azureApiKey);
-const client = new OpenAIClient(endpoint, credential);
-const maxTokens: number = 128
-
-
-export { client, maxTokens }
+export default client;
