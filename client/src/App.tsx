@@ -1,6 +1,8 @@
-import SignInPage from "./pages/SignInPage.tsx";
-import ErrorPage from "./pages/ErrorPage";
-import HomePage from "./pages/HomePage";
+import { Suspense, lazy } from 'react';
+
+const SignInPage = lazy(() => import('@/pages/SignInPage.tsx'));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
 
 import { pca } from '../src/config/authConfig.ts'
 import { MsalProvider } from "@azure/msal-react";
@@ -16,14 +18,16 @@ export default function App() {
     },
     {
       path: "/home",
-      element: <HomePage /> ,
+      element: <HomePage />,
       errorElement: <ErrorPage />,
     },
   ]);
 
   return (
     <MsalProvider instance={pca}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </MsalProvider>
   )
 }

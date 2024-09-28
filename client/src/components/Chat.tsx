@@ -1,6 +1,6 @@
 
-import { useState, useRef } from 'react';
-import ChatInterfaceSidebar from './ChatSidebar'; // Sidebar for the chat interface
+import { useState, useRef,Suspense, lazy } from 'react';
+const ChatInterfaceSidebar = lazy(() => import('./ChatSidebar')); // Sidebar for the chat interface
 import { Button } from './ui/button'; // Button component
 import { ModeToggle } from './ModeToggle'; // Mode toggle (e.g., dark/light mode)
 import useScrollToBottom from '../hooks/useScrollToBottom'; // Custom hook to scroll to the bottom when new messages arrive
@@ -57,7 +57,9 @@ export default function Chat() {
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       {/* Sidebar for large screens */}
       <div className="hidden md:block min-w-[20%]">
+      <Suspense fallback={<div>Loading Sidebar...</div>}>
         <ChatInterfaceSidebar />
+      </Suspense>
       </div>
 
       {/* Main chat content area */}
