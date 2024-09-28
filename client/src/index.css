@@ -64,3 +64,20 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Example Tailwind CSS for loading toasts */
+/* Add this to your global CSS or Tailwind configuration */
+
+.toast-loading {
+  @apply bg-blue-100 text-blue-900 border border-blue-300 shadow-lg;
+}
+
+.toast-loading .spinner {
+  @apply animate-spin h-5 w-5 text-blue-500;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
