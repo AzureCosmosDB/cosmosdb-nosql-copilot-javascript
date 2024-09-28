@@ -47,12 +47,16 @@ export default function Chat() {
     username: accounts[0]?.username ?? '',
   };
 
+  const newChat = async () => {
+    setMessages([]);
+  }
+
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
       {/* Sidebar for large screens */}
       <div className="hidden md:block min-w-[20%]">
         <Suspense fallback={<div>Loading Sidebar...</div>}>
-          <ChatInterfaceSidebar />
+          <ChatInterfaceSidebar newChat={newChat} />
         </Suspense>
       </div>
 
@@ -60,7 +64,7 @@ export default function Chat() {
       <div className="flex-1 flex flex-col">
 
         {/* Header section extracted into ChatHeader component */}
-        <ChatHeader userData={userData} />
+        <ChatHeader userData={userData} newChat={newChat} />
 
         {/* Message display area with auto-scrolling */}
         <div className="flex-1 p-4 overflow-y-auto bg-gray-100 dark:bg-gray-900">

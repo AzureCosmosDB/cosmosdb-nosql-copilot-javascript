@@ -18,9 +18,10 @@ interface IUserProfile {
 
 interface ChatHeaderProps {
     userData: IUserProfile;
+    newChat: () => void;
 }
 
-const ChatHeader: React.FC<ChatHeaderProps> = ({ userData }) => {
+const ChatHeader: React.FC<ChatHeaderProps> = ({ userData, newChat }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     
@@ -60,7 +61,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ userData }) => {
                         <DrawerTitle>Chat History</DrawerTitle>
                     </DrawerHeader>
                     <Suspense fallback={<div>Loading Sidebar...</div>}>
-                        <ChatInterfaceSidebar />
+                        <ChatInterfaceSidebar newChat={newChat} />
                     </Suspense>
                 </DrawerContent>
             </Drawer>

@@ -4,7 +4,7 @@ import { Button } from './ui/button'; // Custom Button component
 import cosmosDbIcon from '../assets/cosmosdb.svg'; // Importing the cosmosdb icon for display in the sidebar header
 import CognitiveIcon from '../assets/Azure_cognitive_services.svg'; // Importing the Azure Cognitive Services icon for display in the sidebar header
 
-export default function ChatSidebar() {
+export default function ChatSidebar({ newChat }: { newChat: () => void }) {
   return (
     <div className="min-w-[20%] md:min-h-full bg-white dark:bg-gray-800 border-r overflow-x-clip">
       {/* Header Section of the Sidebar */}
@@ -17,7 +17,9 @@ export default function ChatSidebar() {
       </div>
 
       {/* Create New Chat Button */}
-      <Button className="min-w-fit w-[90%] m-2" variant="outline">
+      <Button
+        onClick={newChat}
+        className="min-w-fit w-[90%] m-2" variant="outline">
         <PlusCircle className="w-10 h-4 mr-2" /> {/* Plus Icon */}
         Create New Chat {/* Button Text */}
       </Button>
