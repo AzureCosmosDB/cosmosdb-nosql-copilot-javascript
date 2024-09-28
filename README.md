@@ -1,19 +1,45 @@
-# ChatGPT Assistant
+# Build a Copilot app using Azure Cosmos DB & Azure OpenAI Service
 
-Below is a detailed `README.md` file for your project that includes instructions on how to clone, run the application, and register the app on the Microsoft Identity Platform for MSAL authentication.
+This sample application shows how to build a Generative-AI application using Azure Cosmos DB using its new vector search capabilities and Azure OpenAI Service and Semantic Kernel. The sample provides practical guidance on many concepts you will need to design and build these types of applications.
 
 ---
+
+## User Experience
+- SignUp
+![no pic](./diagrams/Signin.png)
+- Homepage
+![no pic](./diagrams/HomePage.png)
+- Add Knowlege
+![no pic](./diagrams/AddKnowlege.png)
+- Light Theme
+![no pic](./diagrams/LightTheme.png)
+- User Profile
+![no pic](./diagrams/UserProfile.png)
 
 ## Application Auth
 
 This application is a React-based frontend that integrates with Microsoft Authentication Library (MSAL) to provide authentication using Microsoft Identity Platform (formerly known as Azure Active Directory). The application demonstrates how to sign in users and redirect authenticated users to the home page.
 
+## Concepts Covered
+This application demonstrates the following concepts and how to implement them:
+
+The basics of building a highly scalable Generative-AI chat application using Azure Cosmos DB for NoSQL.
+- Generating completions and embeddings using Azure OpenAI Service.
+- Managing a context window (chat history) for natural conversational - - - - interactions with an LLM.
+- Manage token consumption and payload sizes for Azure OpenAI Service requests.
+- Building a semantic cache using Azure Cosmos DB for NoSQL vector search for improved performance and cost.
+- Using the Semantic Kernel SDK for completion and embeddings generation.
+
 ## Prerequisites
 
 Before running this application, you need:
 
-- **Node.js** installed. You can download it [here](https://nodejs.org/).
+- **Node.js version >= 20** installed. You can download it [here](https://nodejs.org/).
 - An **Azure account**. If you don't have an Azure account, you can create a free one [here](https://azure.microsoft.com/free/).
+- Subscription access to Azure OpenAI service. Start [here](https://learn.microsoft.com/legal/cognitive-services/openai/limited-access?WT.mc_id=studentamb_225706) to Request Access to Azure OpenAI Service
+- VS Code, GitHub Codespaces or another editor to edit or view the source for this sample.
+- Azure Cosmos DB for NoSQL Vector Search Preview enrollment
+- Azure Blob Storage
 
 ## Cloning and Running the Application
 
@@ -26,15 +52,7 @@ git clone https://github.com/AzureCosmosDB/cosmosdb-nosql-copilot-javascript
 cd cosmosdb-nosql-copilot-javascript
 ```
 
-### Step 2: Install dependencies
-
-Once inside the project directory, install the necessary dependencies by running:
-
-```bash
-npm install
-```
-
-### Step 3: Register the Application on Microsoft Identity Platform
+### Step 2: Register the Application on Microsoft Identity Platform
 
 Before running the app, you'll need to register the application with the Microsoft Identity Platform to authenticate users via MSAL. Follow these steps:
 
@@ -67,9 +85,7 @@ Before running the app, you'll need to register the application with the Microso
    - Under **Platform configurations**, make sure that the SPA is added and `https://localhost:5173` is listed as a **Redirect URI**.
    - Enable **ID tokens** under **Implicit grant and hybrid flows**.
 
-### Step 4: Configure the MSAL Settings
-
-Create a `.env` file in the root directory and configure your MSAL credentials:
+7. **Create a `.env`** file in the root directory and configure your MSAL credentials:
 
 ```bash
 VITE_CLIENT_ID=your-client-id
@@ -77,15 +93,13 @@ VITE_CLIENT_ID=your-client-id
 
 Replace `your-client-id` with the values you obtained from the Azure portal.
 
-### Step 5: Run the Application
 
-Once the app is configured with your MSAL settings, you can run it using the following command:
+### Step 3: Quickstart
 
-```bash
-npm start
-```
+Please see [Quickstarts](./QUICK_START.md)
 
-The application should now be running at [http://localhost:3000](http://localhost:3000).
+
+The application should now be running at [http://localhost:5173](http://localhost:5173).
 
 ## Key Features
 
@@ -93,57 +107,6 @@ The application should now be running at [http://localhost:3000](http://localhos
 - **Redirect on Login**: After successful login, users are redirected to the home page.
 - **Handling Login Progress**: If the login is in progress, users will be notified with a loading message.
 
-## Technologies Used
-
-- **React**: JavaScript library for building user interfaces.
-- **MSAL.js**: Microsoft Authentication Library for handling authentication.
-- **Azure Active Directory**: Provides authentication via the Microsoft Identity Platform.
-
-## Folder Structure
-
-```bash
-COSMOSDB-NOSQL-COPILOT-JAVASCRIPT/
-│
-├── node_modules/         # Dependencies
-├── public/               # Public assets
-├── src/                  # Source files for the app
-│   ├── assets/           # Static assets like images
-│   │   └── react.svg     # React logo
-│   ├── components/       # Reusable React components
-│   │   ├── Navbar.tsx       # Navigation bar component
-│   │   ├── Signin.tsx       # Signin component
-│   │   ├── ThemeChanger.tsx # Theme switching component
-│   │   └── UserProfile.tsx  # User profile component
-│   ├── config/           # Configuration files
-│   │   ├── authConfig.ts       # Authentication configuration for MSAL
-│   │   └── azure_openai.config.ts # Config for Azure OpenAI
-│   ├── pages/            # Application pages
-│   │   ├── ErrorPage.tsx       # Error page
-│   │   ├── HomePage.tsx        # Home page
-│   │   └── SigninPage.tsx      # Signin page
-│   ├── App.tsx           # Main application component
-│   ├── index.css         # Global styles
-│   ├── main.tsx          # Entry point for the React app
-│   └── vite-env.d.ts     # TypeScript environment declaration
-├── .env.local            # Local environment variables
-├── .gitignore            # Files to be ignored by Git
-├── CODE_OF_CONDUCT.md    # Code of Conduct for the project
-├── LICENSE               # License for the project
-├── README.md             # Project documentation (this file)
-├── SECURITY.md           # Security policy
-├── SUPPORT.md            # Support documentation
-├── eslint.config.js      # ESLint configuration
-├── index.html            # Entry HTML file
-├── package.json          # Project metadata and dependencies
-├── package-lock.json     # Lock file for package versions
-├── postcss.config.js     # PostCSS configuration
-├── tailwind.config.js    # Tailwind CSS configuration
-├── tsconfig.app.json     # TypeScript config for the app
-├── tsconfig.json         # Main TypeScript configuration
-├── tsconfig.node.json    # TypeScript config for Node-related files
-└── vite.config.ts        # Vite configuration file
-
-```
 
 ## Additional Resources
 
@@ -154,7 +117,5 @@ COSMOSDB-NOSQL-COPILOT-JAVASCRIPT/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
 
 This README provides clear instructions to clone, configure, and run the application, as well as the steps for registering the app in the Microsoft Identity Platform for authentication.

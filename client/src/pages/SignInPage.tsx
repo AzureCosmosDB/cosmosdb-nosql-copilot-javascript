@@ -40,7 +40,7 @@ const SignInPage: React.FC = () => {
   return (
     <div className="flex items-center justify-center h-screen bg-gray-100">
       <div className="bg-white text-black shadow-md rounded-lg p-8 text-center flex flex-col gap-3">
-        <h1 className="text-2xl font-bold mb-4 text-neutral">Welcome to Your Assistant</h1>
+        <h1 className="text-2xl font-bold mb-4 text-neutral">Welcome to Your Ai Assistant</h1>
         <span>There are currently no users signed in!</span>
         <Button
           className="btn btn-outline btn-primary"

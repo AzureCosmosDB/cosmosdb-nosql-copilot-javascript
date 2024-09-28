@@ -1,6 +1,6 @@
 import { Suspense, lazy } from 'react';
 
-const SignInPage = lazy(() => import('@/pages/SignInPage.tsx'));
+const SignInPage = lazy(() => import('./pages/SignInPage.tsx'));
 const ErrorPage = lazy(() => import("./pages/ErrorPage"));
 const HomePage = lazy(() => import("./pages/HomePage"));
 
