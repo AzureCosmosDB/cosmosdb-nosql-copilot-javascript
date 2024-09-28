@@ -61,7 +61,6 @@ const config = {
     endpoint: COSMOS_ENDPOINT,
     key: COSMOS_KEY,
     database: COSMOS_DB,
-    container: COSMOS_CONTAINER,
   },
   azureStorage: {
     connectionString: AZURE_STORAGE_CONNECTION_STRING,

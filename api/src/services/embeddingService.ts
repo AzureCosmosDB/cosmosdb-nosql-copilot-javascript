@@ -12,7 +12,7 @@ import { retryWrapper } from '../utils/retryWrapper';
  */
 export const generateEmbeddings = async (chunks: string[]): Promise<any[]> => {
   try {
-    const embeddings = [];
+    const embeddings: EmbeddingItem[] = [];
 
     const batchSize = 20; // Adjust based on API limits and performance
     for (let i = 0; i < chunks.length; i += batchSize) {
@@ -48,3 +48,8 @@ export const generateEmbeddings = async (chunks: string[]): Promise<any[]> => {
     throw error;
   }
 };
+
+interface EmbeddingItem {
+  text: string;
+  embedding: number[]; // Adjust the type based on actual embedding structure
+}

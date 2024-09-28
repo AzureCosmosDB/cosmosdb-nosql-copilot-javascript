@@ -1,14 +1,10 @@
 // server/src/services/queryService.ts
-
 import axios from 'axios';
-import { CosmosClient } from '@azure/cosmos';
 import { cosineSimilarity } from '../utils/cosineSimilarity';
 import logger from '../utils/logger';
 import config from '../config';
 import { SqlQuerySpec } from '@azure/cosmos';
-
-const client = new CosmosClient({ endpoint: config.cosmos.endpoint, key: config.cosmos.key });
-const container = client.database(config.cosmos.database).container(config.cosmos.container);
+import CosmosDB from '../config/cosmosdb.config';
 
 /**
  * Retrieves the top K relevant chunks from Cosmos DB based on cosine similarity
@@ -27,6 +23,7 @@ export const retrieveRelevantChunks = async (query: string, topK: number = 5): P
     }
 
     logger.info(`Generating embedding for query: "${query}"`);
+
     // Generate embedding for the query
     const queryEmbeddingResponse = await axios.post(
       `${config.azureOpenAI.endpoint}/openai/deployments/${config.azureOpenAI.models.embedding}/embeddings?api-version=2022-12-01`,
@@ -49,11 +46,14 @@ export const retrieveRelevantChunks = async (query: string, topK: number = 5): P
 
     // Fetch all embeddings from Cosmos DB (Consider vector indexing for scalability)
     const querySpec: SqlQuerySpec = {
-      query: 'SELECT TOP @topK c.text, c.embedding FROM c ORDER BY c._ts DESC',
+      query: 'SELECT TOP @topK c.text, c.embedding FROM c',
       parameters: [{ name: '@topK', value: topK }]
     };
 
-    const { resources } = await container.items.query(querySpec).fetchAll();
+    const cosmosDB = CosmosDB.getInstance();
+    const embeddingsContainer = cosmosDB.getEmbeddingsContainer();
+
+    const { resources } = await embeddingsContainer.items.query(querySpec).fetchAll();
 
     logger.info(`Total chunks retrieved from Cosmos DB: ${resources.length}`);
 

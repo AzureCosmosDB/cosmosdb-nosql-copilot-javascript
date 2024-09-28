@@ -3,10 +3,14 @@
 GET http://localhost:8000/
 Accept: application/json
 
-###
-POST http://localhost:8000/api/chat
+### ASK QUESTION
+POST http://localhost:8000/api/query
 content-type: application/json
 
 {
-    "question": "What is python"
+    "query": "What is kevins attributes in summary less than 20 words"
 }
+
+### CLEAR CACHE
+DELETE http://localhost:8000/api/cache
+

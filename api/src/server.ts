@@ -1,10 +1,13 @@
 import config from './config';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import queryRoutes from './routes/queryRoutes';
 import logger from './utils/logger';
 import limiter from './middleware/rate-limiter'
+import initializeCosmosDB from './config/initCosmosDB';
 
+import queryRoutes from './routes/queryRoutes';
+import cacheRoutes from './routes/cacheRoutes';
+import documentRoutes from './routes/documentRoutes';
 
 // Create Express server
 const app: Application = express();
@@ -21,9 +24,22 @@ app.get('/', (req: Request, res: Response) => {
 
 // Routes
 app.use('/api/query', queryRoutes); //api/query
+app.use('/api/cache', cacheRoutes); //api/cache
+app.use('/api/documents', documentRoutes); //api/documents/upload
 
 
 // Start server
-app.listen(config.port, () => {
-    logger.info(`Server running on port ${config.port}`);
-});
+const startServer = async () => {
+    try {
+        await initializeCosmosDB();
+        const PORT = config.port;
+        app.listen(PORT, () => {
+            logger.info(`Server is running on port ${PORT}`);
+        });
+    } catch (error) {
+        logger.error('Failed to initialize Cosmos DB:', error);
+        process.exit(1);
+    }
+};
+
+startServer();

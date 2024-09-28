@@ -1,10 +1,11 @@
 // server/src/services/azureStorageService.ts
 
-import { BlobServiceClient, ContainerClient } from '@azure/storage-blob';
+import { BlobServiceClient, ContainerClient, BlobItem } from '@azure/storage-blob';
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
 import config from '../config';
+import logger from '../utils/logger'; // Add this import
 
 // Initialize BlobServiceClient
 const blobServiceClient = BlobServiceClient.fromConnectionString(config.azureStorage.connectionString);
@@ -54,6 +55,27 @@ export const uploadToAzureBlob = async (filePath: string, originalName: string):
     return blockBlobClient.url;
   } catch (error) {
     console.error('Error uploading to Azure Blob Storage:', error);
+    throw error;
+  }
+};
+
+/**
+ * Deletes all blobs from the Azure Storage container.
+ */
+export const clearAzureStorageCache = async (): Promise<void> => {
+  try {
+    logger.info('Starting to clear Azure Storage cache...');
+    let deletedCount = 0;
+
+    for await (const blob of containerClient.listBlobsFlat()) {
+      await containerClient.deleteBlob(blob.name);
+      logger.debug(`Deleted blob: ${blob.name}`);
+      deletedCount += 1;
+    }
+
+    logger.info(`Successfully deleted ${deletedCount} blobs from Azure Storage cache.`);
+  } catch (error: any) {
+    logger.error('Error clearing Azure Storage cache:', error);
     throw error;
   }
 };
