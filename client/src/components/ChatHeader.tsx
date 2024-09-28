@@ -1,12 +1,13 @@
 import React, { Suspense, useState } from 'react';
 import { Button } from './ui/button';
 import { Drawer, DrawerTrigger, DrawerContent, DrawerHeader, DrawerTitle } from './ui/drawer';
-import { Loader, Menu } from 'lucide-react';
+import { Brain, Loader, Menu } from 'lucide-react';
 import { ModeToggle } from './ModeToggle';
-import UserProfile from './UserProfile';
-import ChatInterfaceSidebar from './ChatSidebar';
 import { toast } from 'sonner';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import UserProfile from './UserProfile';
+import ChatInterfaceSidebar from './ChatSidebar';
 
 const SERVER_URL: string = import.meta.env.VITE_SERVER_URL
 
@@ -23,8 +24,8 @@ interface ChatHeaderProps {
 
 const ChatHeader: React.FC<ChatHeaderProps> = ({ userData, newChat }) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const navigate = useNavigate();
 
-    
     const clearCache = async () => {
         setIsLoading(true);
         try {
@@ -68,14 +69,21 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ userData, newChat }) => {
             <h1 className="text-xl font-bold text-black dark:text-white">Your Assistant</h1>
             <div className='flex justify-end gap-2'>
                 <Button
+                    onClick={() => navigate('/knowledge')}
+                    className="text-black dark:text-white"
+                    variant="ghost">
+                    <Brain className="w-10 h-4 " />
+                    Add Knowledge
+                </Button>
+                <Button
                     onClick={clearCache}
                     variant="ghost"
-                    className="text-black dark:text-white">
-                    {isLoading && <Loader className="animate-spin mr-2" />}
+                    className="text-black dark:text-white min-w-fit">
+                    {isLoading && <Loader className="animate-spin" />}
                     {isLoading ? 'Clearing...' : 'Clear Cache'}
                 </Button>
-                <ModeToggle />
                 <UserProfile userData={userData} />
+                <ModeToggle />
             </div>
         </div>
     );

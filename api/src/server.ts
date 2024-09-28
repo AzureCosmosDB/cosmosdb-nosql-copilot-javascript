@@ -25,7 +25,7 @@ app.get('/', (req: Request, res: Response) => {
 // Routes
 app.use('/api/query', queryRoutes); //api/query
 app.use('/api/cache', cacheRoutes); //api/cache
-app.use('/api/documents', documentRoutes); //api/documents/upload
+app.use('/api/document', documentRoutes); //api/documents/upload
 
 
 // Start server

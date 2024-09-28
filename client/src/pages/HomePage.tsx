@@ -17,9 +17,6 @@ export default function HomePage() {
   }, [isAuthenticated, navigate]);
 
 
-  return (
-    <main>
-      <Chat />
-    </main>
-  )
+  return <Chat />
+
 }

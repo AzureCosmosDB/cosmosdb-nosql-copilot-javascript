@@ -23,6 +23,7 @@ export default function ChatSidebar({ newChat }: { newChat: () => void }) {
         <PlusCircle className="w-10 h-4 mr-2" /> {/* Plus Icon */}
         Create New Chat {/* Button Text */}
       </Button>
+      
 
       {/* List of Chat Cards */}
       <div className="p-2">
