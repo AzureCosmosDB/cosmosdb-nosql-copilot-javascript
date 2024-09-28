@@ -44,7 +44,7 @@ export const clearCosmosCache = async (): Promise<void> => {
     const embeddingsContainer = cosmosDB.getEmbeddingsContainer();
 
     const querySpec = {
-      query: 'SELECT c.id, c.id FROM c',
+      query: 'SELECT c.id FROM c',
     };
 
     const { resources: items } = await embeddingsContainer.items.query(querySpec).fetchAll();

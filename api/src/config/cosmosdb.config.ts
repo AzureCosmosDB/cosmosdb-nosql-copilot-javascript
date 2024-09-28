@@ -78,7 +78,7 @@ class CosmosDB {
       partitionKey: {
         paths: ["/id"],
         version: PartitionKeyDefinitionVersion.V2,
-        kind: PartitionKeyKind.MultiHash,
+        kind: PartitionKeyKind.Hash,
       },
     };
     const { container } = await database.containers.createIfNotExists(containerDefinition);
