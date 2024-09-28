@@ -7,7 +7,6 @@ const HomePage = lazy(() => import("./pages/HomePage"));
 import { pca } from '../src/config/authConfig.ts'
 import { MsalProvider } from "@azure/msal-react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Knowledge from './pages/Knowledge.tsx';
 
 export default function App() {
 
@@ -22,11 +21,7 @@ export default function App() {
       element: <HomePage />,
       errorElement: <ErrorPage />,
     },
-    {
-      path: "/knowledge",
-      element: <Knowledge />,
-      errorElement: <ErrorPage />,
-    },
+    
   ]);
 
   return (

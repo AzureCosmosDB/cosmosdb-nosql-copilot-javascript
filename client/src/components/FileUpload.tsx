@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone, FileRejection } from 'react-dropzone';
-import axios from 'axios';
+import axios, { AxiosProgressEvent } from 'axios';
+
 import { Loader } from 'lucide-react';
 const SERVER_URL: string = import.meta.env.VITE_SERVER_URL
 
@@ -66,7 +67,7 @@ const FileUpload: React.FC = () => {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
-                onUploadProgress: (progressEvent: ProgressEvent) => {
+                onUploadProgress: (progressEvent: AxiosProgressEvent) => {
                     if (progressEvent.total) {
                         const percentCompleted = Math.round(
                             (progressEvent.loaded * 100) / progressEvent.total
@@ -76,7 +77,7 @@ const FileUpload: React.FC = () => {
                 },
             });
 
-            setSuccess(response?.data?.message || 'File uploaded successfully!');
+            setSuccess(response.data.message || 'File uploaded successfully!');
             setFile(null);
         } catch (err) {
             console.error(err);
@@ -93,11 +94,9 @@ const FileUpload: React.FC = () => {
     };
 
     return (
-        <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
-            <div
-                {...getRootProps()}
-                className={`flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 cursor-pointer transition-colors ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300'
-                    }`}
+        <div className="mx-auto mt-10 p-6 rounded-lg shadow-md">
+            <div {...getRootProps()} className={`flex flex-col items-center justify-center border-2 border-dashed rounded-lg p-6 cursor-pointer transition-colors 
+                    ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300' }`}
             >
                 <input {...getInputProps()} />
                 {isDragActive ? (
