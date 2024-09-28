@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { cosineSimilarity } from '../utils/cosineSimilarity';
 import logger from '../utils/logger';
-import config from '../config';
+import config from '../config/env.config';
 import { SqlQuerySpec } from '@azure/cosmos';
 import CosmosDB from '../config/cosmosdb.config';
 

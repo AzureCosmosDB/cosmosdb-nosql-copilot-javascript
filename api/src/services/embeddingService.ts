@@ -1,7 +1,7 @@
 // server/src/services/embeddingService.ts
 import axios from 'axios';
 import logger from '../utils/logger';
-import config from '../config';
+import config from '../config/env.config';
 import { retryWrapper } from '../utils/retryWrapper';
 
 /**

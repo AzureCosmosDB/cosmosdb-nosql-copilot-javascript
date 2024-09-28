@@ -1,7 +1,7 @@
 // server/src/controllers/queryController.ts
 
 import { Request, Response } from 'express';
-import config from '../config/index'; // Updated import path
+import config from '../config/env.config'; // Updated import path
 import openaiClient from '../config/openai.client'; // Updated import path
 import { retrieveRelevantChunks } from '../services/queryService';
 import logger from '../utils/logger';
@@ -58,7 +58,7 @@ export const handleQuery = async (req: Request, res: Response) => {
     logger.debug('Starting to receive stream...');
     try {
       const stream = new Readable({
-        read() {}
+        read() { }
       });
 
       stream.pipe(res);
@@ -72,7 +72,7 @@ export const handleQuery = async (req: Request, res: Response) => {
       }
 
       stream.push(null);
-      
+
       res.end();
       logger.info('Finished streaming response.');
 

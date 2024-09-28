@@ -1,7 +1,7 @@
 // server/src/config/cosmosdb.config.ts
 import { PartitionKeyDefinitionVersion, PartitionKeyKind, CosmosClient, Container } from '@azure/cosmos';
 import logger from '../utils/logger';
-import config from '../config';
+import config from './env.config';
 
 class CosmosDB {
   private static instance: CosmosDB;
@@ -45,7 +45,7 @@ class CosmosDB {
   private async init(): Promise<void> {
     try {
       // Create database if it doesn't exist
-      const { database } = await this.client.databases.createIfNotExists({ 
+      const { database } = await this.client.databases.createIfNotExists({
         id: config.cosmos.database,
         throughput: 400 // Adjust as needed or make configurable
       });

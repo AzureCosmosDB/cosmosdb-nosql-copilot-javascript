@@ -1,4 +1,4 @@
-import config from './config';
+import config from './config/env.config';
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import logger from './utils/logger';

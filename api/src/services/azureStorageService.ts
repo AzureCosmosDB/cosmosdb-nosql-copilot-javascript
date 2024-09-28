@@ -4,7 +4,7 @@ import { BlobServiceClient, ContainerClient, BlobItem } from '@azure/storage-blo
 import fs from 'fs';
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid';
-import config from '../config';
+import config from '../config/env.config';
 import logger from '../utils/logger'; // Add this import
 
 // Initialize BlobServiceClient

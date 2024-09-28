@@ -1,7 +1,7 @@
 // server/src/services/cosmosService.ts
 import { v4 as uuidv4 } from 'uuid';
 import logger from '../utils/logger';
-import pLimit from 'p-limit';
+import { pLimit } from 'plimit-lit';
 import CosmosDB from '../config/cosmosdb.config';
 
 /**
