@@ -6,14 +6,23 @@ This sample application shows how to build a Generative-AI application using Azu
 
 ## User Experience
 - SignUp
+
 ![no pic](./diagrams/Signin.png)
+
 - Homepage
+
 ![no pic](./diagrams/HomePage.png)
+
 - Add Knowlege
+
 ![no pic](./diagrams/AddKnowlege.png)
+
 - Light Theme
+
 ![no pic](./diagrams/LightTheme.png)
+
 - User Profile
+
 ![no pic](./diagrams/UserProfile.png)
 
 ## Application Auth
