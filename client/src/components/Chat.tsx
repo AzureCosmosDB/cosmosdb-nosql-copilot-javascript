@@ -67,8 +67,8 @@ export default function Chat() {
         {/* Message display area with auto-scrolling */}
         <div className="flex-1 p-4 overflow-y-auto bg-gray-100 dark:bg-gray-900">
           {messages.map((message, index) => (
-            <Suspense fallback={<ChatMessageSkeleton />}>
-              <ChatMessage key={index} message={message} />  
+            <Suspense key={index} fallback={<ChatMessageSkeleton />}>
+              <ChatMessage  message={message} />  
             </Suspense>
           ))}
           {/* Ref to ensure we scroll to the bottom when a new message is added */}
