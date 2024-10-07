@@ -4,8 +4,6 @@ import logger from '../utils/logger';
 import { pLimit } from 'plimit-lit';
 import CosmosDB from '../config/cosmosdb.config';
 
-const cosmosDB = CosmosDB.getInstance();
-const embeddingsContainer = cosmosDB.getEmbeddingsContainer();
 
 /**
  * Saves chunks with embeddings to the Cosmos DB EmbeddingsContainer.
@@ -25,7 +23,7 @@ export const saveChunksToCosmos = async (chunksWithEmbeddings: any[], blobUrl: s
       };
 
       logger.info(`Saving chunk with ID: ${document.id} to Cosmos DB`);
-
+      const embeddingsContainer = CosmosDB.getInstance().getEmbeddingsContainer();
       await embeddingsContainer.items.create(document);
       logger.info(`Chunk with ID: ${document.id} saved successfully`);
     }
@@ -45,7 +43,7 @@ export const clearCosmosCache = async (): Promise<void> => {
     const querySpec = {
       query: 'SELECT c.id FROM c',
     };
-
+    const embeddingsContainer = CosmosDB.getInstance().getEmbeddingsContainer();
     const { resources: items } = await embeddingsContainer.items.query(querySpec).fetchAll();
 
     if (items.length === 0) {
