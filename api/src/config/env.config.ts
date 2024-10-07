@@ -56,24 +56,24 @@ requiredEnvVars.forEach((varName) => {
 
 // Consolidated Configuration Object
 const config = {
-  port: PORT,
+  port: PORT!,
   cosmos: {
-    endpoint: COSMOS_ENDPOINT,
-    key: COSMOS_KEY,
-    database: COSMOS_DB,
+    endpoint: COSMOS_ENDPOINT!,
+    key: COSMOS_KEY!,
+    database: COSMOS_DB!,
   },
   azureStorage: {
-    connectionString: AZURE_STORAGE_CONNECTION_STRING,
-    container: AZURE_STORAGE_CONTAINER,
+    connectionString: AZURE_STORAGE_CONNECTION_STRING!,
+    container: AZURE_STORAGE_CONTAINER!,
   },
   azureOpenAI: {
-    apiKey: AZURE_OPENAI_API_KEY,
-    endpoint: AZURE_OPENAI_ENDPOINT,
+    apiKey: AZURE_OPENAI_API_KEY!,
+    endpoint: AZURE_OPENAI_ENDPOINT!,
     models: {
-      embedding: EMBEDDING_MODEL,
-      chat: CHAT_MODEL,
-      chatApiVersion: CHAT_API_VERSION,
-      openAIMaxTokens: MAX_TOKENS
+      embedding: EMBEDDING_MODEL!,
+      chat: CHAT_MODEL!,
+      chatApiVersion: CHAT_API_VERSION!,
+      openAIMaxTokens: MAX_TOKENS!
     },
   },
 };

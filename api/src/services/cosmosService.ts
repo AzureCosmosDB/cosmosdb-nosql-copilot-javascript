@@ -4,6 +4,9 @@ import logger from '../utils/logger';
 import { pLimit } from 'plimit-lit';
 import CosmosDB from '../config/cosmosdb.config';
 
+const cosmosDB = CosmosDB.getInstance();
+const embeddingsContainer = cosmosDB.getEmbeddingsContainer();
+
 /**
  * Saves chunks with embeddings to the Cosmos DB EmbeddingsContainer.
  * @param chunksWithEmbeddings Array of chunks with their embeddings.
@@ -11,8 +14,6 @@ import CosmosDB from '../config/cosmosdb.config';
  */
 export const saveChunksToCosmos = async (chunksWithEmbeddings: any[], blobUrl: string): Promise<void> => {
   try {
-    const cosmosDB = CosmosDB.getInstance();
-    const embeddingsContainer = cosmosDB.getEmbeddingsContainer();
 
     for (const chunk of chunksWithEmbeddings) {
       const document = {
@@ -40,8 +41,6 @@ export const saveChunksToCosmos = async (chunksWithEmbeddings: any[], blobUrl: s
 export const clearCosmosCache = async (): Promise<void> => {
   try {
     logger.info('Starting to clear Cosmos DB cache...');
-    const cosmosDB = CosmosDB.getInstance();
-    const embeddingsContainer = cosmosDB.getEmbeddingsContainer();
 
     const querySpec = {
       query: 'SELECT c.id FROM c',
