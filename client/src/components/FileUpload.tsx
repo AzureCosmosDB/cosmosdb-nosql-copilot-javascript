@@ -100,11 +100,11 @@ const FileUpload: React.FC = () => {
             >
                 <input {...getInputProps()} />
                 {isDragActive ? (
-                    <p className="text-blue-500">Drop the file here...</p>
+                    <div className="text-blue-500">Drop the file here...</div>
                 ) : (
-                    <p className="text-gray-500">
+                    <div className="text-gray-500">
                         Drag & drop a PDF file here, or click to select one
-                    </p>
+                    </div>
                 )}
             </div>
 
@@ -141,7 +141,7 @@ const FileUpload: React.FC = () => {
                             style={{ width: `${uploadProgress}%` }}
                         ></div>
                     </div>
-                    <p className="text-sm text-gray-600 mt-1">{uploadProgress}%</p>
+                    <div className="text-sm text-gray-600 mt-1">{uploadProgress}%</div>
                 </div>
             )}
 

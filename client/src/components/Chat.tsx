@@ -25,11 +25,9 @@ interface IUserProfile {
 
 export default function Chat() {
   const [messages, setMessages] = useState<Message[]>([
-    { role: 'user', content: 'What is the largest lake in North America?', tokens: 9, time: new Date() },
-    { role: 'assistant', content: 'The largest lake in North America is Lake Superior, located on the border of the United States and Canada. (cached response)', tokens: 0, time: new Date() },
-    { role: 'user', content: 'What is the second?', tokens: 5, time: new Date() },
-    { role: 'assistant', content: 'The second largest lake in North America is Lake Huron, also located on the border of the United States and Canada. (cached response)', tokens: 0, time: new Date() },
-  ]);
+    { role: 'user', content: 'This is a demo user Prompt?', tokens: 3, time: new Date() },
+    { role: 'assistant', content: '😂😂 Demo response', tokens: 2, time: new Date() },
+    ]);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -69,8 +67,8 @@ export default function Chat() {
         {/* Message display area with auto-scrolling */}
         <div className="flex-1 p-4 overflow-y-auto bg-gray-100 dark:bg-gray-900">
           {messages.map((message, index) => (
-            <Suspense fallback={<ChatMessageSkeleton />}>
-              <ChatMessage key={index} message={message} />  
+            <Suspense key={index} fallback={<ChatMessageSkeleton />}>
+              <ChatMessage  message={message} />  
             </Suspense>
           ))}
           {/* Ref to ensure we scroll to the bottom when a new message is added */}
